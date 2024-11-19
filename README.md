@@ -3,7 +3,7 @@
 **Table 1.** Weather and climate datasets details.
 | Dataset | Resolution | Format | Variables | Method | Access Conditions | Temporal Coverage |
 |----------|----------|----------|-------------|-----------|----------|----------|
-| [DPIRD][DPIRD] | station observations (\~200 stations) | web, json, csv | Time series data - Evaporation, rainfall, solar radiation, air temperature, and others | *Ad hoc* handling of technical issues and missing values | Some support is provided to patch missing data | Minute to yearly intervals |
+| [DPIRD][DPIRD] | station observations (\~200 stations) | web, json, csv | Time series data - Evaporation, rainfall, solar radiation, air temperature, and others | *Ad hoc* handling of technical issues and missing values | API key registration | Minute to yearly intervals |
 | [SILO (BOM)][SILO (BOM)] | station observations (\~8000 stations) | web, json, csv, apsim | Continuous daily time series Evaporation, rainfall, solar radiation, air temperature, and others | Observational records or interpolated estimates for missing records | Accessible via SILO network | daily, from 1889 to current year |
 | [SILO Gridded Data][SILO Gridded Data] | \~5 km² | NetCDF, GeoTiff | Evaporation, rainfall, solar radiation, air temperature, and others | Gridded daily climate surfaces derived either by splining or kriging the observational data | Valid email required | Daily, monthly, yearly |
 | [ANUClimate 2.0][ANUClimate 2.0] | \~1 km² | NetCDF | Evaporation, rainfall, solar radiation, air temperature, and others | Derived from observational records, ANUSPLIN Version 4.6 spatial models | NCI account and membership of the research project | At least daily, from 1970 to present |
