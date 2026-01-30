@@ -3,7 +3,7 @@
 A curated catalog of climate and weather datasets, focused on accessibility and clear metadata.
 
 ## Dashboard
-The interactive dashboard lives in `docs/index.html` and lets you filter by category, format, access conditions, and license.
+The interactive dashboard lives in `docs/index.html` and lets you filter by category, format, access conditions, and license. It is published via GitHub Pages from the `docs/` directory.
 - Local preview: `python -m http.server -d docs 8000` then open `http://localhost:8000`
 - Source of truth: `data/datasets.json` (synced to `docs/data/datasets.json`)
 
