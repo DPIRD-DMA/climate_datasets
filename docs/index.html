@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Climate Datasets Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Climate Datasets</p>
+        <h1>Explore, filter, and compare datasets fast.</h1>
+        <p class="lead">
+          An interactive catalog of Australian and global climate datasets with quick
+          filters, clear access conditions, and direct links to sources.
+        </p>
+        <div class="hero__actions">
+          <a class="button" href="../README.md">Read the repository guide</a>
+          <a class="button button--ghost" href="data/datasets.json">Download JSON</a>
+        </div>
+      </div>
+      <div class="hero__panel">
+        <div class="stat">
+          <span class="stat__label">Datasets</span>
+          <span class="stat__value" id="dataset-count">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat__label">Categories</span>
+          <span class="stat__value" id="category-count">0</span>
+        </div>
+        <div class="stat">
+          <span class="stat__label">Formats</span>
+          <span class="stat__value" id="format-count">0</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="filters">
+        <div class="filters__row">
+          <label class="field">
+            <span>Search</span>
+            <input id="search" type="search" placeholder="Dataset name, variable, method..." />
+          </label>
+          <label class="field">
+            <span>Category</span>
+            <select id="category"></select>
+          </label>
+          <label class="field">
+            <span>Format</span>
+            <select id="format"></select>
+          </label>
+          <label class="field">
+            <span>Access</span>
+            <select id="access"></select>
+          </label>
+          <label class="field">
+            <span>License</span>
+            <select id="license"></select>
+          </label>
+        </div>
+        <div class="filters__chips" id="quick-filters"></div>
+      </section>
+
+      <section class="table-card">
+        <div class="table-card__header">
+          <h2>Dataset Catalog</h2>
+          <div class="table-card__meta" id="results-meta">0 results</div>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Dataset</th>
+                <th>Category</th>
+                <th>Resolution</th>
+                <th>Format</th>
+                <th>Access</th>
+                <th>Temporal Coverage</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="dataset-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Maintain the source of truth in <code>data/datasets.json</code> and sync it to <code>docs/data/</code>.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
