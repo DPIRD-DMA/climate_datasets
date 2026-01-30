@@ -39,3 +39,15 @@ out/
 *.bak
 .tmp/
 tmp/
+
+# Secrets
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.csr
+secrets/

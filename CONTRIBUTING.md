@@ -7,6 +7,7 @@ Thanks for helping maintain the climate datasets catalog. This repo is documenta
 2. Run `scripts/generate-readme-table.py` to refresh the README snapshot.
 3. Run `scripts/sync-dashboard-data.py` to update `docs/data/datasets.json`.
 4. Run `scripts/check-reference-labels.py` to confirm references.
+5. Run `scripts/validate-datasets.py` to validate JSON structure and URLs.
 
 ## Dataset Entry Template
 Add one object per dataset:

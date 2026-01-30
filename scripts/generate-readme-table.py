@@ -23,6 +23,10 @@ columns = [
 with DATA_PATH.open() as f:
     data = json.load(f)["datasets"]
 
+# Show only a small preview in README.
+preview_count = 3
+data = data[:preview_count]
+
 def md_escape(text: str) -> str:
     return text.replace("|", "\\|").replace("\n", " ")
 
