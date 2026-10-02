@@ -9,66 +9,78 @@
   </head>
   <body>
     <header class="hero">
-      <div class="hero__content">
-        <p class="eyebrow">Climate Datasets</p>
-        <h1>Explore, filter, and compare datasets fast.</h1>
-        <p class="lead">
-          An interactive catalog of Australian and global climate datasets with quick
-          filters, clear access conditions, and direct links to sources.
-        </p>
-        <div class="hero__actions">
-          <a class="button" href="https://github.com/DPIRD-DMA/climate_datasets#readme">Read the repository guide</a>
-          <a class="button button--ghost" href="data/datasets.json">Download JSON</a>
-        </div>
+      <p class="eyebrow">Climate datasets</p>
+      <h1>Find the right climate dataset</h1>
+      <p class="lead">
+        Australian and global climate datasets with access conditions, licences and links to the
+        source. Filter by variable, time step, domain and resolution.
+      </p>
+      <div class="hero__actions">
+        <a class="button" href="https://github.com/DPIRD-DMA/climate_datasets#readme">Repository guide</a>
+        <a class="button button--ghost" href="data/datasets.json">Download JSON</a>
       </div>
-      <div class="hero__panel">
-        <div class="stat">
-          <span class="stat__label">Datasets</span>
-          <span class="stat__value" id="dataset-count">0</span>
-        </div>
-        <div class="stat">
-          <span class="stat__label">Categories</span>
-          <span class="stat__value" id="category-count">0</span>
-        </div>
-        <div class="stat">
-          <span class="stat__label">Formats</span>
-          <span class="stat__value" id="format-count">0</span>
-        </div>
-      </div>
+      <p class="hero__summary" id="summary"></p>
     </header>
 
     <main class="container">
-      <section class="filters">
-        <div class="filters__row">
-          <label class="field">
+      <section class="filters" aria-label="Search and filters">
+        <div class="filters__top">
+          <label class="field field--search">
             <span>Search</span>
             <input id="search" type="search" placeholder="Dataset name, variable, method..." />
           </label>
           <label class="field">
-            <span>Category</span>
-            <select id="category"></select>
-          </label>
-          <label class="field">
-            <span>Format</span>
-            <select id="format"></select>
-          </label>
-          <label class="field">
-            <span>Access</span>
-            <select id="access"></select>
-          </label>
-          <label class="field">
-            <span>License</span>
-            <select id="license"></select>
+            <span>Sort by</span>
+            <select id="sort"></select>
           </label>
         </div>
-        <div class="filters__chips" id="quick-filters"></div>
+
+        <details class="filters__panel" id="filter-panel" open>
+          <summary>Filters <span id="filter-count" class="filters__count"></span></summary>
+          <div class="filters__row">
+            <label class="field">
+              <span>Time step</span>
+              <select id="timestep"></select>
+            </label>
+            <label class="field">
+              <span>Domain</span>
+              <select id="domain"></select>
+            </label>
+            <label class="field">
+              <span>Access</span>
+              <select id="access"></select>
+            </label>
+            <label class="field">
+              <span>Format</span>
+              <select id="format"></select>
+            </label>
+            <label class="field">
+              <span>Licence</span>
+              <select id="license"></select>
+            </label>
+            <label class="field">
+              <span>Category</span>
+              <select id="category"></select>
+            </label>
+            <label class="field">
+              <span>Max grid spacing (km)</span>
+              <input id="maxres" type="number" min="0" step="any" inputmode="decimal" placeholder="e.g. 12" />
+            </label>
+          </div>
+          <fieldset class="tags">
+            <legend>Variables (all selected must be present)</legend>
+            <div class="tags__list" id="variable-tags"></div>
+          </fieldset>
+          <button class="button button--small button--ghost" type="button" id="clear">Clear filters</button>
+        </details>
       </section>
 
       <section class="table-card">
         <div class="table-card__header">
-          <h2>Dataset Catalog</h2>
+          <h2>Dataset catalog</h2>
           <div class="table-card__meta" id="results-meta" role="status" aria-live="polite">0 results</div>
         </div>
+        <p class="empty" id="empty" hidden>No datasets match these filters. Try clearing some.</p>
         <div class="table-wrapper">
           <table>
             <caption class="visually-hidden">Climate datasets</caption>
@@ -77,6 +89,7 @@
                 <th scope="col">Dataset</th>
                 <th scope="col">Category</th>
                 <th scope="col">Resolution</th>
+                <th scope="col">Period</th>
                 <th scope="col">Time steps</th>
                 <th scope="col">Access</th>
                 <th scope="col">Licence</th>
@@ -90,7 +103,11 @@
     </main>
 
     <footer class="footer">
-      <p>Maintain the source of truth in <code>data/datasets.json</code> and sync it to <code>docs/data/</code>.</p>
+      <p id="footer-note"></p>
+      <p>
+        To add or correct a dataset, see the
+        <a href="https://github.com/DPIRD-DMA/climate_datasets/blob/main/CONTRIBUTING.md">contributing guide</a>.
+      </p>
     </footer>
 
     <script src="app.js"></script>

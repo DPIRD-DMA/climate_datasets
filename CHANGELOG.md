@@ -20,3 +20,8 @@ All notable changes to this repository are documented here.
 - Use `python3` in all Makefile targets.
 - Update `AGENTS.md`, `CONTRIBUTING.md` and `README.md` to match the JSON-registry workflow, and link the live dashboard.
 - Add a CC BY 4.0 `LICENSE` for catalogue content.
+- Add controlled structured fields to every entry: `access_types`, `formats`, `timesteps`, `variable_tags`, `resolution_km`, `station_count` (station data only), `start_year`, `end_year`, `domain` and `last_checked`. The descriptive text fields are unchanged.
+- Add `data/vocab.json` for the allowed values and their display order, and `scripts/registry.py` for the shared field definitions and validation. The validator and both skill helpers now use them, and the helpers accept lists, numbers and null.
+- Backfill all 18 entries from provider pages, NCI GeoNetwork and NCI THREDDS. Correct AGCD v2.0.2 coverage (to 2023), SILO Gridded access and time steps, Queensland 10 km domain, start year and scenarios, and CHELSA V2.1 licence (CC0 1.0). Name NCI project codes and open THREDDS access for ANUClimate, AGCD, AWO, Queensland and BARRA2. Add 20-minute and 3-hourly time steps to BARRA-C2 coverage.
+- Rework the dashboard: compact rows with expandable details, licence badges that flag non-commercial and share-alike terms, and cards below 720 px. Filters for variable, time step, domain, access type, format, licence, category and grid spacing, sorting by name, resolution or start year, and filter state in the URL. A smaller hero and a footer showing when entries were last checked.
+- Build dashboard rows with DOM methods instead of `innerHTML`, and copy `data/vocab.json` to `docs/data/` in `make sync`.

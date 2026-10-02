@@ -3,14 +3,15 @@
 A curated catalog of climate and weather datasets, focused on accessibility and clear metadata.
 
 ## Dashboard
-Browse the full catalogue at **https://dpird-dma.github.io/climate_datasets/**. You can filter by category, format, access conditions and license.
+Browse the full catalogue at **https://dpird-dma.github.io/climate_datasets/**. You can filter by variable, time step, domain, access type, format, licence and grid spacing, sort the list, and share a filtered view as a link.
 
 The dashboard lives in `docs/` and is deployed to GitHub Pages on every push to `main`.
 - Local preview: `make preview` then open `http://localhost:8000`
-- Source of truth: `data/datasets.json` (synced to `docs/data/datasets.json`)
+- Source of truth: `data/datasets.json` and `data/vocab.json` (synced to `docs/data/`)
 
 ## Project Structure
 - `data/datasets.json`: canonical dataset registry
+- `data/vocab.json`: allowed values for the structured fields (access, formats, time steps, variables, domain)
 - `.agents/skills/`: repo-scoped Codex workflows for safe dataset edits
 - `docs/`: static dashboard (HTML/CSS/JS)
 - `scripts/`: helpers for table generation and validation
@@ -19,7 +20,7 @@ The dashboard lives in `docs/` and is deployed to GitHub Pages on every push to 
 
 ## Contribution Workflow (Short)
 1. Add or update entries in `data/datasets.json`, preferably with the skill helpers below.
-2. Run `make all`. It regenerates the README preview, syncs the dashboard data, checks reference labels, validates the registry (structure and URL syntax) and runs the tests.
+2. Run `make all`. It regenerates the README preview, syncs the dashboard data, checks reference labels, validates the registry (structure, field types, vocabulary and URL syntax) and runs the tests.
 3. Commit the registry change with the regenerated files. CI fails if they are out of date.
 
 See `CONTRIBUTING.md` for detailed guidance.
