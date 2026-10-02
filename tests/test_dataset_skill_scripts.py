@@ -204,6 +204,29 @@ class DatasetSkillScriptTests(unittest.TestCase):
                 candidate["last_checked"] = value
                 self.assert_add_rejected(candidate, "last_checked")
 
+    def test_add_requires_every_structured_field_except_station_count(self) -> None:
+        for field in registry.REQUIRED_STRUCTURED:
+            with self.subTest(field=field):
+                candidate = dataset("Beta")
+                del candidate[field]
+                self.assert_add_rejected(candidate, f"Missing required fields: {field}")
+        self.assertNotIn("station_count", registry.REQUIRED_STRUCTURED)
+        self.assertNotIn("station_count", dataset())
+
+    def test_add_accepts_null_end_year_and_resolution_when_key_present(self) -> None:
+        candidate = dataset("Beta")
+        candidate.update(end_year=None, resolution_km=None, station_count=10)
+        result = self.run_script(ADD_SCRIPT, "--dry-run", input_value=candidate)
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_replace_without_structured_fields_is_rejected(self) -> None:
+        legacy = {k: v for k, v in dataset().items() if k not in registry.STRUCTURED_FIELDS}
+        before = self.data_path.read_bytes()
+        result = self.run_script(UPDATE_SCRIPT, "--name", "Alpha", "--replace", input_value=legacy)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Missing required fields: access_types", result.stderr)
+        self.assertEqual(self.data_path.read_bytes(), before)
+
     def test_update_patch_replaces_list_field(self) -> None:
         result = self.run_script(
             UPDATE_SCRIPT,

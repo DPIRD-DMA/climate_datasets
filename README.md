@@ -44,7 +44,7 @@ The table below is generated from `data/datasets.json` and previews the first th
 |---|---|---|---|---|---|---|
 | [DPIRD][DPIRD] | station observations (~200 stations) | web, json, csv | Time series data - Evaporation, rainfall, solar radiation, air temperature, and others | Ad hoc handling of technical issues and missing values | API key registration | Minute to yearly intervals |
 | [SILO Point Data][SILO Point Data] | station observations (~8000 stations) | web, json, csv, apsim | Continuous daily time series Evaporation, rainfall, solar radiation, air temperature, and others | Observational records or interpolated estimates for missing records | Accessible via SILO network | daily, from 1889 to current year |
-| [SILO Gridded Data][SILO Gridded Data] | ~5 km (0.05°) | NetCDF, GeoTiff | Evaporation, rainfall, solar radiation, air temperature, and others | Gridded daily climate surfaces derived either by splining or kriging the observational data | Valid email required | Daily, monthly, yearly |
+| [SILO Gridded Data][SILO Gridded Data] | ~5 km (0.05°) | NetCDF, GeoTiff | Evaporation, rainfall, solar radiation, air temperature, and others | Gridded daily climate surfaces derived either by splining or kriging the observational data | Free, open download from the AWS Public Data Program (no email or registration) | Daily and monthly, from 1889 to the current year (mean sea level pressure from 1957, Class A pan evaporation from 1970) |
 <!-- DATASET_TABLE_END -->
 
 ## Dataset References

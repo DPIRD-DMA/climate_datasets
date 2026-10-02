@@ -13,7 +13,36 @@
       "update_frequency": "Minute to yearly",
       "license": "",
       "provider_contact": "",
-      "source_url": "https://www.dpird.wa.gov.au/online-tools/apis/"
+      "source_url": "https://www.dpird.wa.gov.au/online-tools/apis/",
+      "access_types": [
+        "API key"
+      ],
+      "formats": [
+        "JSON",
+        "CSV",
+        "Web"
+      ],
+      "timesteps": [
+        "sub-hourly",
+        "hourly",
+        "daily",
+        "monthly",
+        "annual"
+      ],
+      "variable_tags": [
+        "temperature",
+        "humidity",
+        "rainfall",
+        "wind",
+        "solar radiation",
+        "evaporation"
+      ],
+      "resolution_km": null,
+      "station_count": 198,
+      "start_year": 2000,
+      "end_year": null,
+      "domain": "Western Australia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "SILO Point Data",
@@ -28,7 +57,32 @@
       "update_frequency": "Daily",
       "license": "CC BY 4.0",
       "provider_contact": "",
-      "source_url": "https://www.longpaddock.qld.gov.au/silo/point-data/"
+      "source_url": "https://www.longpaddock.qld.gov.au/silo/point-data/",
+      "access_types": [
+        "Open"
+      ],
+      "formats": [
+        "CSV",
+        "JSON",
+        "APSIM",
+        "Web"
+      ],
+      "timesteps": [
+        "daily"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "evaporation",
+        "humidity",
+        "solar radiation"
+      ],
+      "resolution_km": null,
+      "station_count": 8000,
+      "start_year": 1889,
+      "end_year": null,
+      "domain": "Australia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "SILO Gridded Data",
@@ -37,13 +91,37 @@
       "format": "NetCDF, GeoTiff",
       "variables": "Evaporation, rainfall, solar radiation, air temperature, and others",
       "method": "Gridded daily climate surfaces derived either by splining or kriging the observational data",
-      "access_conditions": "Valid email required",
-      "temporal_coverage": "Daily, monthly, yearly",
+      "access_conditions": "Free, open download from the AWS Public Data Program (no email or registration)",
+      "temporal_coverage": "Daily and monthly, from 1889 to the current year (mean sea level pressure from 1957, Class A pan evaporation from 1970)",
       "spatial_domain": "Australia",
       "update_frequency": "Daily to yearly",
       "license": "CC BY 4.0",
       "provider_contact": "",
-      "source_url": "https://www.longpaddock.qld.gov.au/silo/gridded-data/"
+      "source_url": "https://www.longpaddock.qld.gov.au/silo/gridded-data/",
+      "access_types": [
+        "Open"
+      ],
+      "formats": [
+        "NetCDF",
+        "GeoTIFF"
+      ],
+      "timesteps": [
+        "daily",
+        "monthly"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "humidity",
+        "pressure",
+        "solar radiation",
+        "evaporation"
+      ],
+      "resolution_km": 5,
+      "start_year": 1889,
+      "end_year": null,
+      "domain": "Australia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "ANUClimate 2.0",
@@ -52,13 +130,36 @@
       "format": "NetCDF",
       "variables": "Evaporation, rainfall, solar radiation, air temperature, and others",
       "method": "Derived from observational records, ANUSPLIN Version 4.6 spatial models",
-      "access_conditions": "NCI account and membership of the research project",
+      "access_conditions": "NCI account and membership of project gh70, or open download via NCI THREDDS",
       "temporal_coverage": "At least daily, from 1970 to present",
       "spatial_domain": "Australia",
       "update_frequency": "Daily",
       "license": "CC BY-SA 4.0",
       "provider_contact": "",
-      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f2576_7854_4065_1457"
+      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f2576_7854_4065_1457",
+      "access_types": [
+        "Open",
+        "NCI project"
+      ],
+      "formats": [
+        "NetCDF"
+      ],
+      "timesteps": [
+        "daily",
+        "monthly"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "solar radiation",
+        "humidity",
+        "evaporation"
+      ],
+      "resolution_km": 1,
+      "start_year": 1900,
+      "end_year": null,
+      "domain": "Australia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "AGCD v1.0.1",
@@ -67,13 +168,34 @@
       "format": "NetCDF",
       "variables": "Rainfall, air temperature, vapour pressure",
       "method": "Consistent temporal and spatial analyses across Australia",
-      "access_conditions": "NCI account and membership of the research project",
-      "temporal_coverage": "Daily",
+      "access_conditions": "NCI account and membership of project zv2, or open download via NCI THREDDS",
+      "temporal_coverage": "Daily and monthly, from 1900 to 2022 inclusive (temperature from 1910, vapour pressure from 1971)",
       "spatial_domain": "Australia",
       "update_frequency": "Daily",
       "license": "CC BY-NC 4.0",
       "provider_contact": "",
-      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f1801_8183_3094_1341"
+      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f1801_8183_3094_1341",
+      "access_types": [
+        "Open",
+        "NCI project"
+      ],
+      "formats": [
+        "NetCDF"
+      ],
+      "timesteps": [
+        "daily",
+        "monthly"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "humidity"
+      ],
+      "resolution_km": 5,
+      "start_year": 1900,
+      "end_year": 2022,
+      "domain": "Australia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "AGCD v2.0.2",
@@ -82,13 +204,31 @@
       "format": "NetCDF",
       "variables": "Monthly rainfall",
       "method": "Updated version of AGCD v1.0.1",
-      "access_conditions": "NCI account and membership of the research project",
-      "temporal_coverage": "monthly, from 1900 to 2022 inclusive",
+      "access_conditions": "NCI account and membership of project zv2, or open download via NCI THREDDS",
+      "temporal_coverage": "monthly, from 1900 to 2023 inclusive",
       "spatial_domain": "Australia",
       "update_frequency": "Monthly",
       "license": "CC BY-NC 4.0",
       "provider_contact": "",
-      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f2506_1525_9066_1679"
+      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f2506_1525_9066_1679",
+      "access_types": [
+        "Open",
+        "NCI project"
+      ],
+      "formats": [
+        "NetCDF"
+      ],
+      "timesteps": [
+        "monthly"
+      ],
+      "variable_tags": [
+        "rainfall"
+      ],
+      "resolution_km": 1,
+      "start_year": 1900,
+      "end_year": 2023,
+      "domain": "Australia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "BOM Australian Water Outlook (AWRA-L)",
@@ -97,13 +237,36 @@
       "format": "NetCDF",
       "variables": "Precipitation, soil moisture, runoff, deep drainage and evapotranspiration",
       "method": "AWO is produced using a range of climate inputs, static grids and satellite observations as input into the Australian Water Resources Assessment Landscape model (AWRA-L)",
-      "access_conditions": "NCI account and membership of the research project",
+      "access_conditions": "NCI account and membership of project iu04, or open download via NCI THREDDS",
       "temporal_coverage": "daily gridded from 1911 until yesterday (historical), and water balance information, seasonal forecasts, and hydrological projections to 2100",
       "spatial_domain": "Australia",
       "update_frequency": "Daily",
       "license": "CC BY 4.0",
       "provider_contact": "",
-      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f6683_9441_8676_1139"
+      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f6683_9441_8676_1139",
+      "access_types": [
+        "Open",
+        "NCI project"
+      ],
+      "formats": [
+        "NetCDF"
+      ],
+      "timesteps": [
+        "daily",
+        "monthly",
+        "annual"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "evaporation",
+        "runoff",
+        "soil moisture"
+      ],
+      "resolution_km": 5,
+      "start_year": 1911,
+      "end_year": null,
+      "domain": "Australia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "CSIRO hourly near-surface air temperature grids",
@@ -118,7 +281,25 @@
       "update_frequency": "Hourly",
       "license": "CC BY-SA 4.0",
       "provider_contact": "",
-      "source_url": "https://data.csiro.au/collection/csiro:60405"
+      "source_url": "https://data.csiro.au/collection/csiro:60405",
+      "access_types": [
+        "Open"
+      ],
+      "formats": [
+        "GeoTIFF"
+      ],
+      "timesteps": [
+        "hourly",
+        "climatology"
+      ],
+      "variable_tags": [
+        "temperature"
+      ],
+      "resolution_km": 1,
+      "start_year": 2015,
+      "end_year": 2023,
+      "domain": "Australia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "BARRA-R2 and BARRA-RE2 (BARRA2)",
@@ -127,13 +308,44 @@
       "format": "NetCDF",
       "variables": "Temperature, moisture, wind and flux variables at sub-surface, surface, and pressure levels, and heights above surface. BARRA-R2 hourly includes max wind gust (wsgsmax), max wind speed (sfcWindmax) and surface soil moisture (mrsos)",
       "method": "BOM's higher resolution regional atmospheric reanalysis over Australia",
-      "access_conditions": "NCI account and membership of the research project",
+      "access_conditions": "NCI account and membership of project ob53, or open download via NCI THREDDS",
       "temporal_coverage": "sub-daily, daily and monthly, from 1979 to about 4 months behind present (BARRA-R2 hourly files to 2026-05 on 2026-10-02)",
       "spatial_domain": "Australia",
       "update_frequency": "Sub-daily to monthly",
       "license": "CC BY 4.0",
       "provider_contact": "",
-      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f9057_2475_0540_0329"
+      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f9057_2475_0540_0329",
+      "access_types": [
+        "Open",
+        "NCI project"
+      ],
+      "formats": [
+        "NetCDF"
+      ],
+      "timesteps": [
+        "hourly",
+        "3-hourly",
+        "daily",
+        "monthly"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "humidity",
+        "wind",
+        "wind gust",
+        "solar radiation",
+        "evaporation",
+        "soil moisture",
+        "runoff",
+        "pressure",
+        "convective indices"
+      ],
+      "resolution_km": 12,
+      "start_year": 1979,
+      "end_year": null,
+      "domain": "Australia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "Queensland Future Climate 10 km CMIP6 projections",
@@ -142,13 +354,38 @@
       "format": "NetCDF",
       "variables": "Evaporation, rainfall, solar radiation, air temperature, and others",
       "method": "Gridded climate surfaces derived from regional projection models (QLD-DEC)",
-      "access_conditions": "NCI account and membership of the research project",
-      "temporal_coverage": "hourly to monthly from several GCMs, historical (1970-2014) and SSP (2.6, 4.5, 7.0)",
-      "spatial_domain": "Queensland, Australia",
+      "access_conditions": "NCI account and membership of project ig45, or open download via NCI THREDDS",
+      "temporal_coverage": "hourly (precipitation only), daily and monthly from several GCMs, historical (1960-2014) and SSP1-2.6, SSP2-4.5, SSP3-7.0 and SSP5-8.5 to 2100 (scenarios vary by GCM), plus an ERA5-driven evaluation run",
+      "spatial_domain": "Australasia (AUS-10i grid, about 89°E-182°E and 52°S-9°N), produced for Queensland",
       "update_frequency": "Hourly to monthly",
       "license": "CC BY 4.0",
       "provider_contact": "",
-      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f2922_1827_1104_4111"
+      "source_url": "https://geonetwork.nci.org.au/geonetwork/srv/eng/catalog.search#/metadata/f2922_1827_1104_4111",
+      "access_types": [
+        "Open",
+        "NCI project"
+      ],
+      "formats": [
+        "NetCDF"
+      ],
+      "timesteps": [
+        "hourly",
+        "daily",
+        "monthly"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "humidity",
+        "pressure",
+        "solar radiation",
+        "wind"
+      ],
+      "resolution_km": 10,
+      "start_year": 1960,
+      "end_year": 2100,
+      "domain": "Australasia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "CHELSA V2.1",
@@ -157,28 +394,77 @@
       "format": "GeoTIFF",
       "variables": "Atmosphere, Air Temperature, Precipitation",
       "method": "Combines mechanistic and statistical downscaling of GCMs",
-      "access_conditions": "CC BY 4.0, with credit to sources",
+      "access_conditions": "Free, open download (no registration)",
       "temporal_coverage": "Daily 1941 to 2025, monthly 1979-2021, climatologies 1981-2010 to 2071-2100",
       "spatial_domain": "Global",
       "update_frequency": "Monthly",
-      "license": "CC BY 4.0",
+      "license": "CC0 1.0",
       "provider_contact": "",
-      "source_url": "https://chelsa-climate.org"
+      "source_url": "https://chelsa-climate.org",
+      "access_types": [
+        "Open"
+      ],
+      "formats": [
+        "GeoTIFF"
+      ],
+      "timesteps": [
+        "daily",
+        "monthly",
+        "climatology"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature"
+      ],
+      "resolution_km": 1,
+      "start_year": 1941,
+      "end_year": 2100,
+      "domain": "Global",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "NASA POWER",
       "category": "Derived products",
       "resolution": "~111 km (1°) solar, ~55 x ~69 km (0.5° x 0.625°) meteorology",
-      "format": "NetCDF, AWS Bucket",
+      "format": "NetCDF, CSV, JSON",
       "variables": "Solar and meteorological data sets for support of renewable energy, building energy efficiency and agricultural needs",
       "method": "Derived from NASA research for renewable energy, building energy efficiency, and agricultural needs",
-      "access_conditions": "Free and publicly accessible",
+      "access_conditions": "Free and publicly accessible, including through an AWS bucket",
       "temporal_coverage": "Varies, includes near-real time",
       "spatial_domain": "Global",
       "update_frequency": "Varies",
       "license": "",
       "provider_contact": "",
-      "source_url": "https://power.larc.nasa.gov"
+      "source_url": "https://power.larc.nasa.gov",
+      "access_types": [
+        "Open"
+      ],
+      "formats": [
+        "NetCDF",
+        "CSV",
+        "JSON"
+      ],
+      "timesteps": [
+        "hourly",
+        "daily",
+        "monthly",
+        "climatology"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "humidity",
+        "wind",
+        "solar radiation",
+        "evaporation",
+        "soil moisture",
+        "pressure"
+      ],
+      "resolution_km": 10,
+      "start_year": 1981,
+      "end_year": null,
+      "domain": "Global",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "WorldClim",
@@ -193,7 +479,28 @@
       "update_frequency": "Periodic releases",
       "license": "",
       "provider_contact": "",
-      "source_url": "https://www.worldclim.org/data/worldclim21.html"
+      "source_url": "https://www.worldclim.org/data/worldclim21.html",
+      "access_types": [
+        "Open"
+      ],
+      "formats": [
+        "GeoTIFF"
+      ],
+      "timesteps": [
+        "climatology"
+      ],
+      "variable_tags": [
+        "temperature",
+        "rainfall",
+        "solar radiation",
+        "wind",
+        "humidity"
+      ],
+      "resolution_km": 1,
+      "start_year": 1970,
+      "end_year": 2000,
+      "domain": "Global",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "BARRA-C2",
@@ -203,12 +510,45 @@
       "variables": "Hourly near-surface wind, wind gust (wsgs) and hourly max gust (wsgsmax), surface soil moisture (mrsos), visibility, convective indices (CAPE, shear, helicity), temperature, precipitation and others",
       "method": "BOM convective-scale (kilometre-scale) downscaled reanalysis, part of BARRA2 (ACCESS model). Resolves convective gusts better than BARRA-R2",
       "access_conditions": "NCI account and membership of project ob53, or open download via NCI THREDDS",
-      "temporal_coverage": "Hourly, daily and monthly, from 1979 to about 4 months behind present (hourly files to 2026-05 on 2026-10-02)",
+      "temporal_coverage": "20-minute, hourly, 3-hourly, daily and monthly, from 1979 to about 4 months behind present (hourly files to 2026-05 on 2026-10-02)",
       "spatial_domain": "Australia (AUST-04)",
       "update_frequency": "Monthly, 3-4 months behind present",
       "license": "CC BY 4.0",
       "provider_contact": "",
-      "source_url": "https://opus.nci.org.au/pages/viewpage.action?pageId=264241166"
+      "source_url": "https://opus.nci.org.au/pages/viewpage.action?pageId=264241166",
+      "access_types": [
+        "Open",
+        "NCI project"
+      ],
+      "formats": [
+        "NetCDF"
+      ],
+      "timesteps": [
+        "sub-hourly",
+        "hourly",
+        "3-hourly",
+        "daily",
+        "monthly"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "humidity",
+        "wind",
+        "wind gust",
+        "solar radiation",
+        "evaporation",
+        "soil moisture",
+        "runoff",
+        "pressure",
+        "convective indices",
+        "visibility"
+      ],
+      "resolution_km": 4.4,
+      "start_year": 1979,
+      "end_year": null,
+      "domain": "Australia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "BARPA-R",
@@ -223,7 +563,38 @@
       "update_frequency": "Static (versioned releases)",
       "license": "CC BY 4.0",
       "provider_contact": "",
-      "source_url": "https://dx.doi.org/10.25914/z1x6-dq28"
+      "source_url": "https://dx.doi.org/10.25914/z1x6-dq28",
+      "access_types": [
+        "Open",
+        "NCI project"
+      ],
+      "formats": [
+        "NetCDF"
+      ],
+      "timesteps": [
+        "hourly",
+        "6-hourly",
+        "daily",
+        "monthly"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "humidity",
+        "wind",
+        "wind gust",
+        "solar radiation",
+        "evaporation",
+        "soil moisture",
+        "runoff",
+        "pressure",
+        "convective indices"
+      ],
+      "resolution_km": 17,
+      "start_year": 1960,
+      "end_year": 2100,
+      "domain": "Australasia",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "ERA5",
@@ -238,7 +609,35 @@
       "update_frequency": "Daily",
       "license": "CC BY 4.0",
       "provider_contact": "",
-      "source_url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+      "source_url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels",
+      "access_types": [
+        "Free registration",
+        "NCI project"
+      ],
+      "formats": [
+        "GRIB",
+        "NetCDF"
+      ],
+      "timesteps": [
+        "hourly",
+        "monthly"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "pressure",
+        "wind",
+        "wind gust",
+        "solar radiation",
+        "evaporation",
+        "runoff",
+        "soil moisture"
+      ],
+      "resolution_km": 31,
+      "start_year": 1940,
+      "end_year": null,
+      "domain": "Global",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "ERA5-Land",
@@ -253,7 +652,34 @@
       "update_frequency": "Monthly",
       "license": "CC BY 4.0",
       "provider_contact": "",
-      "source_url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land"
+      "source_url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land",
+      "access_types": [
+        "Free registration",
+        "NCI project"
+      ],
+      "formats": [
+        "GRIB",
+        "NetCDF"
+      ],
+      "timesteps": [
+        "hourly",
+        "monthly"
+      ],
+      "variable_tags": [
+        "rainfall",
+        "temperature",
+        "pressure",
+        "wind",
+        "solar radiation",
+        "evaporation",
+        "runoff",
+        "soil moisture"
+      ],
+      "resolution_km": 9,
+      "start_year": 1950,
+      "end_year": null,
+      "domain": "Global",
+      "last_checked": "2026-10-02"
     },
     {
       "name": "SMAP L4 Soil Moisture (SPL4SMGP)",
@@ -268,7 +694,24 @@
       "update_frequency": "Ongoing",
       "license": "",
       "provider_contact": "",
-      "source_url": "https://nsidc.org/data/spl4smgp"
+      "source_url": "https://nsidc.org/data/spl4smgp",
+      "access_types": [
+        "Free registration"
+      ],
+      "formats": [
+        "HDF5"
+      ],
+      "timesteps": [
+        "3-hourly"
+      ],
+      "variable_tags": [
+        "soil moisture"
+      ],
+      "resolution_km": 9,
+      "start_year": 2015,
+      "end_year": null,
+      "domain": "Global",
+      "last_checked": "2026-10-02"
     }
   ]
 }
