@@ -1,5 +1,7 @@
 # Audit Report - 2026-01-30
 
+> **Status (2026-10-02):** Point-in-time record, kept for history. The findings below are addressed: `CONTRIBUTING.md` holds the contribution checklist and entry template; the filterable dashboard (`docs/`) replaced the single wide README table; `scripts/check-reference-labels.py` and `scripts/validate-datasets.py` run in `make all` and CI. The assumption that the repo is documentation-only no longer holds. See `AGENTS.md` for the current structure.
+
 ## Assumptions
 - Repository scope is documentation-only at present, with `README.md` as the primary artifact.
 - No hidden build scripts, tests, or tooling exist beyond what is visible in the repo root.
