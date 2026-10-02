@@ -6,25 +6,13 @@ import stat
 import sys
 import tempfile
 from pathlib import Path
-from urllib.parse import urlparse
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "scripts"))
+import registry  # noqa: E402
 
 DEFAULT_DATA_PATH = Path("data/datasets.json")
-
-REQUIRED_FIELDS = [
-    "name",
-    "category",
-    "resolution",
-    "format",
-    "variables",
-    "method",
-    "access_conditions",
-    "temporal_coverage",
-    "spatial_domain",
-    "update_frequency",
-    "source_url",
-]
-OPTIONAL_FIELDS = ["license", "provider_contact"]
-ALL_FIELDS = REQUIRED_FIELDS + OPTIONAL_FIELDS
+ALL_FIELDS = registry.ALL_FIELDS
+OPTIONAL_FIELDS = registry.OPTIONAL_FIELDS
 
 
 def prompt_field(field: str, optional: bool = False) -> str:
@@ -57,18 +45,9 @@ def load_registry(path: Path) -> tuple[dict, list[dict]]:
 
 
 def validate_dataset(dataset: dict) -> None:
-    unknown = sorted(set(dataset) - set(ALL_FIELDS))
-    if unknown:
-        raise ValueError(f"Unknown fields: {', '.join(unknown)}")
-    missing = [field for field in REQUIRED_FIELDS if not dataset.get(field)]
-    if missing:
-        raise ValueError(f"Missing required fields: {', '.join(missing)}")
-    non_strings = sorted(field for field, value in dataset.items() if not isinstance(value, str))
-    if non_strings:
-        raise ValueError(f"Fields must contain strings: {', '.join(non_strings)}")
-    source = urlparse(dataset["source_url"])
-    if source.scheme not in {"http", "https"} or not source.netloc:
-        raise ValueError("source_url must be an absolute HTTP or HTTPS URL.")
+    errors = registry.validate_entry(dataset, registry.load_vocab(), require_complete=True)
+    if errors:
+        raise ValueError("; ".join(errors))
 
 
 def write_registry_atomic(path: Path, data: dict) -> None:
@@ -113,14 +92,15 @@ def main() -> int:
     try:
         data, datasets = load_registry(args.data_path)
         if args.interactive:
-            new_dataset = {
-                field: prompt_field(field, optional=field in OPTIONAL_FIELDS)
-                for field in ALL_FIELDS
-            }
+            new_dataset = {}
+            for field in ALL_FIELDS:
+                text = prompt_field(field, optional=field in OPTIONAL_FIELDS)
+                if text or field in registry.STRING_FIELDS:
+                    new_dataset[field] = registry.parse_text(field, text)
         else:
             new_dataset = load_object_from_input(args.file)
 
-        for field in OPTIONAL_FIELDS:
+        for field in registry.STRING_OPTIONAL:
             new_dataset.setdefault(field, "")
         validate_dataset(new_dataset)
 
