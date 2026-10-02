@@ -42,8 +42,87 @@ function splitFormats(format) {
     .filter(Boolean);
 }
 
+function el(tag, options = {}, children = []) {
+  const node = document.createElement(tag);
+  const { className, text, attrs } = options;
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  Object.entries(attrs || {}).forEach(([name, value]) => node.setAttribute(name, value));
+  children.forEach((child) => node.append(child));
+  return node;
+}
+
+function safeUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" || url.protocol === "http:" ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
+function formatResolution(dataset) {
+  if (typeof dataset.resolution_km === "number") return `${dataset.resolution_km} km`;
+  if (typeof dataset.station_count === "number") {
+    return `${dataset.station_count.toLocaleString("en-AU")} stations`;
+  }
+  return "-";
+}
+
+function pills(values) {
+  const list = el("ul", { className: "pills" });
+  (values || []).forEach((value) => list.append(el("li", { text: value })));
+  return list;
+}
+
+function licenceBadge(dataset) {
+  const licence = (dataset.license || "").trim();
+  if (!licence) return el("span", { className: "badge badge--none", text: "Not stated" });
+  const noncommercial = /\bNC\b|-NC\b/i.test(licence);
+  const sharealike = /\bSA\b|-SA\b/i.test(licence);
+  const notes = [];
+  if (noncommercial) notes.push("non-commercial use only");
+  if (sharealike) notes.push("share-alike: derivatives must use the same licence");
+  const badge = el("span", {
+    className: `badge${noncommercial ? " badge--nc" : ""}${sharealike ? " badge--sa" : ""}`,
+    text: licence,
+  });
+  if (notes.length) badge.title = `Restriction: ${notes.join("; ")}`;
+  return badge;
+}
+
+function detailList(dataset) {
+  const rows = [
+    ["Variables", dataset.variables],
+    ["Method", dataset.method],
+    ["Resolution", dataset.resolution],
+    ["Spatial domain", dataset.spatial_domain],
+    ["Temporal coverage", dataset.temporal_coverage],
+    ["Update frequency", dataset.update_frequency],
+    ["Formats", (dataset.formats || []).join(", ")],
+    ["Access", dataset.access_conditions],
+    ["Provider contact", dataset.provider_contact],
+    ["Last checked", dataset.last_checked],
+  ].filter(([, value]) => value);
+
+  const list = el("dl", { className: "details" });
+  rows.forEach(([label, value]) => {
+    list.append(el("dt", { text: label }), el("dd", { text: value }));
+  });
+  const href = safeUrl(dataset.source_url);
+  if (href) {
+    const link = el("a", {
+      className: "details__source",
+      text: "Open provider page",
+      attrs: { href, target: "_blank", rel: "noopener" },
+    });
+    list.append(el("dt", { text: "Source" }), el("dd", {}, [link]));
+  }
+  return list;
+}
+
 function populateSelect(select, values) {
-  select.innerHTML = "";
+  select.replaceChildren();
   values.forEach((value) => {
     const option = document.createElement("option");
     option.value = value;
@@ -53,7 +132,7 @@ function populateSelect(select, values) {
 }
 
 function renderQuickFilters() {
-  quickFilters.innerHTML = "";
+  quickFilters.replaceChildren();
   quickFilterOptions.forEach((option) => {
     const button = document.createElement("button");
     button.className = "chip";
@@ -108,31 +187,52 @@ function applyFilters(dataset) {
   );
 }
 
-function renderTable(rows) {
-  datasetBody.innerHTML = "";
-  rows.forEach((dataset) => {
-    const tr = document.createElement("tr");
-    const details = `
-      <div class="details">
-        <strong>Variables:</strong> ${dataset.variables || "-"}<br />
-        <strong>Method:</strong> ${dataset.method || "-"}<br />
-        <strong>Spatial domain:</strong> ${dataset.spatial_domain || "-"}<br />
-        <strong>Update frequency:</strong> ${dataset.update_frequency || "-"}
-      </div>
-    `;
+function cell(label, content, className) {
+  const td = el("td", { className, attrs: { "data-label": label } });
+  td.append(content);
+  return td;
+}
 
-    tr.innerHTML = `
-      <td><a href="${dataset.source_url}" target="_blank" rel="noopener">${dataset.name}</a></td>
-      <td>${dataset.category || "-"}</td>
-      <td>${dataset.resolution || "-"}</td>
-      <td>${dataset.format || "-"}</td>
-      <td>${dataset.access_conditions || "-"}</td>
-      <td>${dataset.temporal_coverage || "-"}</td>
-      <td>${details}</td>
-    `;
+function renderRow(dataset, index) {
+  const detailId = `details-${index}`;
+  const href = safeUrl(dataset.source_url);
+  const name = href
+    ? el("a", { text: dataset.name, attrs: { href, target: "_blank", rel: "noopener" } })
+    : document.createTextNode(dataset.name);
 
-    datasetBody.appendChild(tr);
+  const toggle = el("button", {
+    className: "toggle",
+    text: "Details",
+    attrs: { type: "button", "aria-expanded": "false", "aria-controls": detailId },
   });
+
+  const row = el("tr", { className: "row" });
+  row.append(
+    cell("Dataset", name, "cell-name"),
+    cell("Category", document.createTextNode(dataset.category || "-")),
+    cell("Resolution", document.createTextNode(formatResolution(dataset))),
+    cell("Time steps", pills(dataset.timesteps)),
+    cell("Access", pills(dataset.access_types)),
+    cell("Licence", licenceBadge(dataset)),
+    cell("", toggle, "cell-toggle")
+  );
+
+  const detailRow = el("tr", { className: "row-details", attrs: { id: detailId, hidden: "" } });
+  const detailCell = el("td", { attrs: { colspan: "7" } }, [detailList(dataset)]);
+  detailRow.append(detailCell);
+
+  toggle.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    detailRow.hidden = open;
+    row.classList.toggle("is-open", !open);
+  });
+
+  return [row, detailRow];
+}
+
+function renderTable(rows) {
+  datasetBody.replaceChildren(...rows.flatMap((dataset, index) => renderRow(dataset, index)));
 }
 
 function render() {

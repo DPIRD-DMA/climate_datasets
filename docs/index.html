@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Climate Datasets Dashboard</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231b4d3e'/%3E%3Cpath d='M6 22l6-8 5 5 4-6 5 9z' fill='%23f1c453'/%3E%3C/svg%3E" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -66,19 +67,20 @@
       <section class="table-card">
         <div class="table-card__header">
           <h2>Dataset Catalog</h2>
-          <div class="table-card__meta" id="results-meta">0 results</div>
+          <div class="table-card__meta" id="results-meta" role="status" aria-live="polite">0 results</div>
         </div>
         <div class="table-wrapper">
           <table>
+            <caption class="visually-hidden">Climate datasets</caption>
             <thead>
               <tr>
-                <th>Dataset</th>
-                <th>Category</th>
-                <th>Resolution</th>
-                <th>Format</th>
-                <th>Access</th>
-                <th>Temporal Coverage</th>
-                <th>Details</th>
+                <th scope="col">Dataset</th>
+                <th scope="col">Category</th>
+                <th scope="col">Resolution</th>
+                <th scope="col">Time steps</th>
+                <th scope="col">Access</th>
+                <th scope="col">Licence</th>
+                <th scope="col"><span class="visually-hidden">Details</span></th>
               </tr>
             </thead>
             <tbody id="dataset-body"></tbody>
