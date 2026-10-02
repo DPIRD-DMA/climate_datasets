@@ -7,25 +7,12 @@ import stat
 import sys
 import tempfile
 from pathlib import Path
-from urllib.parse import urlparse
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4] / "scripts"))
+import registry  # noqa: E402
 
 DEFAULT_DATA_PATH = Path("data/datasets.json")
-
-REQUIRED_FIELDS = [
-    "name",
-    "category",
-    "resolution",
-    "format",
-    "variables",
-    "method",
-    "access_conditions",
-    "temporal_coverage",
-    "spatial_domain",
-    "update_frequency",
-    "source_url",
-]
-OPTIONAL_FIELDS = ["license", "provider_contact"]
-ALL_FIELDS = REQUIRED_FIELDS + OPTIONAL_FIELDS
+ALL_FIELDS = registry.ALL_FIELDS
 
 
 def load_object_from_input(path: str | None = None) -> dict:
@@ -53,27 +40,17 @@ def load_registry(path: Path) -> tuple[dict, list[dict]]:
 
 
 def validate_fields(value: dict, require_complete: bool) -> None:
-    unknown = sorted(set(value) - set(ALL_FIELDS))
-    if unknown:
-        raise ValueError(f"Unknown fields: {', '.join(unknown)}")
-    non_strings = sorted(field for field, item in value.items() if not isinstance(item, str))
-    if non_strings:
-        raise ValueError(f"Fields must contain strings: {', '.join(non_strings)}")
-    if require_complete:
-        missing = [field for field in REQUIRED_FIELDS if not value.get(field)]
-        if missing:
-            raise ValueError(f"Missing required fields: {', '.join(missing)}")
-        source = urlparse(value["source_url"])
-        if source.scheme not in {"http", "https"} or not source.netloc:
-            raise ValueError("source_url must be an absolute HTTP or HTTPS URL.")
+    errors = registry.validate_entry(value, registry.load_vocab(), require_complete)
+    if errors:
+        raise ValueError("; ".join(errors))
 
 
 def prompt_update(current: dict) -> dict:
-    updates: dict[str, str] = {}
+    updates: dict = {}
     for field in ALL_FIELDS:
         value = input(f"{field} [{current.get(field, '')}]: ").strip()
         if value:
-            updates[field] = value
+            updates[field] = registry.parse_text(field, value)
     return updates
 
 
@@ -171,7 +148,7 @@ def main() -> int:
 
         if args.replace:
             proposed = dict(updates)
-            for field in OPTIONAL_FIELDS:
+            for field in registry.STRING_OPTIONAL:
                 proposed.setdefault(field, "")
         else:
             proposed = {**current, **updates}

@@ -39,13 +39,17 @@ python3 .agents/skills/update-dataset/scripts/update_dataset.py \
 JSON
 ```
 
+## Structured Fields
+
+List fields are replaced whole, not merged. Send the complete new list, as JSON, for example `{"timesteps": ["hourly", "daily"], "last_checked": "2026-10-02"}`. Values must come from `data/vocab.json`. Update `last_checked` only after re-verifying the entry against the provider.
+
 ## Replacement Mode
 
 `--replace` requires a complete valid dataset object. It does not accept a partial object.
 
 ## Guardrails
 
-- Unknown fields, empty required fields, non-string values, invalid source URLs, and duplicate names are rejected.
+- Unknown fields, missing required fields, wrong value types, values outside `data/vocab.json`, invalid source URLs, and duplicate names are rejected.
 - Fuzzy matches never update a dataset without exact matching or explicit selection.
 - The helper preserves all top-level registry keys and writes atomically.
 - Existing output is never changed by `--dry-run` or failed validation.

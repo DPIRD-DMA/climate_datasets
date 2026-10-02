@@ -34,7 +34,16 @@ python3 .agents/skills/add-dataset/scripts/add_dataset.py --dry-run <<'JSON'
   "update_frequency": "Daily",
   "license": "",
   "provider_contact": "",
-  "source_url": "https://..."
+  "source_url": "https://...",
+  "access_types": ["Open"],
+  "formats": ["NetCDF"],
+  "timesteps": ["daily"],
+  "variable_tags": ["rainfall"],
+  "resolution_km": 5,
+  "start_year": 1900,
+  "end_year": null,
+  "domain": "Australia",
+  "last_checked": "2026-10-02"
 }
 JSON
 ```
@@ -49,8 +58,10 @@ python3 .agents/skills/add-dataset/scripts/add_dataset.py --interactive --dry-ru
 
 ## Guardrails
 
-- Required fields must be non-empty strings; optional fields are `license` and `provider_contact`.
-- Unknown fields and case-insensitive duplicate names are rejected.
+- Required text fields must be non-empty strings. Optional fields are `license`, `provider_contact` and `station_count`.
+- Structured fields are JSON lists, numbers, `null` or ISO dates, not strings. List values and `domain` must come from `data/vocab.json`. `CONTRIBUTING.md` has the field table.
+- Set `last_checked` only for a dataset verified against the provider. Do not invent values.
+- Unknown fields, values outside the vocabulary and case-insensitive duplicate names are rejected.
 - The helper preserves all top-level registry keys and writes atomically.
 - Existing output is never changed by `--dry-run`.
 

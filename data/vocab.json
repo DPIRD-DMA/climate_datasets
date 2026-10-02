@@ -1,0 +1,49 @@
+{
+  "access_types": [
+    "Open",
+    "Free registration",
+    "API key",
+    "NCI project"
+  ],
+  "formats": [
+    "NetCDF",
+    "GeoTIFF",
+    "GRIB",
+    "HDF5",
+    "CSV",
+    "JSON",
+    "APSIM",
+    "Web"
+  ],
+  "timesteps": [
+    "sub-hourly",
+    "hourly",
+    "3-hourly",
+    "6-hourly",
+    "daily",
+    "monthly",
+    "annual",
+    "climatology"
+  ],
+  "variable_tags": [
+    "rainfall",
+    "temperature",
+    "humidity",
+    "wind",
+    "wind gust",
+    "solar radiation",
+    "evaporation",
+    "soil moisture",
+    "runoff",
+    "pressure",
+    "convective indices",
+    "visibility"
+  ],
+  "domain": [
+    "Western Australia",
+    "Queensland",
+    "Australia",
+    "Australasia",
+    "Global"
+  ]
+}
